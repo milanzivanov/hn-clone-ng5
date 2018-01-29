@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { HncloneApiService } from '../hnclone-api.service';
+
 
 @Component({
   selector: 'app-stories',
@@ -7,16 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoriesComponent implements OnInit {
 
-  // first way
-  // items: number[];
-  // second way
-  items: Array<number>;
+  items;
 
-  constructor() {
-    this.items = Array(30);
+  constructor(private _hackerCloneApiService: HncloneApiService) {
   }
 
   ngOnInit() {
+    this._hackerCloneApiService.fetchStories()
+                        .subscribe(items => this.items = items,
+                                   error => console.log('Error fetching stories'));
   }
 
 }

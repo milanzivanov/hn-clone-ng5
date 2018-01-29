@@ -1,8 +1,8 @@
 <div class="main-content">
   <ol>
-    <li *ngFor="let item of items; let i = index;" class="post">
+    <li *ngFor="let item of items | slice:0:30" class="post">
         <!-- item component -->
-        <app-item class="item-block" itemID="{{ i + 1 }}"></app-item>
+        <app-item class="item-block" itemID="{{ item }}"></app-item>
     </li>
   </ol>
   <div class="nav">
@@ -10,5 +10,3 @@
     <a href="" class="more"> More › </a>
   </div>
 </div>
-
-<p>branch services and observable</p>
