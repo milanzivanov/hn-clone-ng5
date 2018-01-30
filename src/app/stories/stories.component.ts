@@ -12,7 +12,11 @@ export class StoriesComponent implements OnInit {
   // second way
   items: Array<number>;
 
+  // tslint:disable-next-line:no-inferrable-types
+  papitoMsg: string = 'Hola from papito!!!';
+
   constructor() {
+    // question
     this.items = Array(30);
   }
 

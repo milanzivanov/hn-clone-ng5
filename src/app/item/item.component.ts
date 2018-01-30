@@ -10,6 +10,7 @@ export class ItemComponent implements OnInit {
   // stories(parent) -- @Input --> item(child)
   @Input() itemID: number;
 
+  @Input() childMsg: string;
   constructor() { }
 
   ngOnInit() {
