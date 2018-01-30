@@ -10,6 +10,7 @@ export class HncloneApiService {
   baseUrl: string;
 
   constructor(private http: HttpClient) {
+    // good practice
     this.baseUrl = 'https://hacker-news.firebaseio.com/v0';
   }
 
@@ -18,10 +19,9 @@ export class HncloneApiService {
                     .map(response => this.data = response);
   }
 
-  fetchItem(id: number): Observable<any> {
+  fetchItem(id: number): Observable<HnInterface> {
     return this.http.get(`${this.baseUrl}/item/${id}.json`)
                     .map((response) => {
-                      // this.data = response;
                       const res = response as HnInterface;
                       return {
                         title: res.title,
@@ -29,13 +29,15 @@ export class HncloneApiService {
                         time: res.time,
                         url: res.url,
                         by: res.by,
-                        score: res.score
+                        score: res.score,
+                        id: res.id,
+                        kids: res.kids,
+                        type: res.type
                       };
                     }
                     // .map(response => console.log(response)
                     );
   }
-
 }
 
 // interface

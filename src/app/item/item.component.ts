@@ -12,6 +12,10 @@ export class ItemComponent implements OnInit {
   @Input() itemID: number;
   item;
 
+  // time
+  today = Date.now();
+  // fixedTimezone = '2015-06-15T09:03:01+0900';
+
 
   constructor(private _hackerCloneApiService: HncloneApiService) { }
 

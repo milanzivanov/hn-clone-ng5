@@ -2,7 +2,9 @@
   <ol>
     <li *ngFor="let item of items | slice:0:30" class="post">
         <!-- item component -->
-        <app-item class="item-block" itemID="{{ item }}"></app-item>
+        <app-item class="item-block"
+                  itemID="{{ item }}">
+        </app-item>
     </li>
   </ol>
   <div class="nav">
