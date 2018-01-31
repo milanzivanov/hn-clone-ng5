@@ -12,16 +12,35 @@ export class HncloneApiService {
   constructor(private http: HttpClient) {
     // good practice
     this.baseUrl = 'https://hacker-news.firebaseio.com/v0';
+    // this.baseUrl = 'https://node-hnapi.herokuapp.com';
   }
 
-  fetchStories(): Observable<any> {
+  fetchStories(storyType: string, page: number): Observable<any> {
+    // return this.http.get(`${this.baseUrl}/${storyType}?page=${page}`)
     return this.http.get(`${this.baseUrl}/topstories.json`)
+    // return this.http.get(`${this.baseUrl}/${storyType}?page=${page}`)
                     .map(response => this.data = response);
   }
 
-  fetchItem(id: number): Observable<HnInterface> {
-    return this.http.get(`${this.baseUrl}/item/${id}.json`)
+  // start user
+
+  fetchUser(userId: string): Observable<any> {
+    // return this.http.get(`${this.baseUrl}/${storyType}?page=${page}`)
+    return this.http.get(`${this.baseUrl}/user/${userId}.json`)
+    // return this.http.get(`${this.baseUrl}/${storyType}?page=${page}`)
                     .map((response) => {
+                      return response as any;
+                    });
+  }
+
+// finish
+
+
+
+  fetchItem(itemId: number): Observable<HnInterface> {
+    return this.http.get(`${this.baseUrl}/item/${itemId}.json`)
+                    .map((response) => {
+                      // return response as HnInterface;
                       const res = response as HnInterface;
                       return {
                         title: res.title,
@@ -53,3 +72,19 @@ export interface HnInterface {
   url: string;
 }
 
+// pwa
+
+// getFeed(feed): Observable<number[]> {
+//   const ref = this.db.list<number>(`/v0/${feed}`);
+//   return ref.valueChanges();
+// }
+
+// getItem(itemId):  Observable<any> {
+//   const ref = this.db.object(`/v0/item/${itemId}`);
+//   return ref.valueChanges();
+// }
+
+// getUser(userId): Observable<any> {
+//   const ref = this.db.object(`/v0/user/${userId}`);
+//   return ref.valueChanges();
+// }

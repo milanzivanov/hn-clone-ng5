@@ -22,7 +22,7 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
     this._hackerCloneApiService.fetchItem(this.itemID).subscribe(data => {
       this.item = data;
-      console.log(data);
+      // console.log(data);
     }, error => console.log('Could not load item' + this.itemID));
 
 
