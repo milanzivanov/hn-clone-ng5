@@ -17,7 +17,7 @@ export class StoriesComponent implements OnInit {
 
   constructor() {
     // question
-    this.items = Array(30);
+    this.items = new Array(30);
   }
 
   ngOnInit() {
