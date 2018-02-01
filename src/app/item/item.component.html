@@ -2,7 +2,7 @@
 <p>Today is {{today | date:'fullDate'}}</p>
 
 
-<div class="loading-section" *ngIf="!item">
+<!-- <div class="loading-section" *ngIf="!item">
   <div class="loader">
     Loading...
   </div>
@@ -54,4 +54,59 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<!-- kkk -->
+
+<div class="item-laptop">
+    <p>
+      <a class="title" href="{{item.url}}">
+        {{item.title}}
+      </a>
+      <!-- <span *ngIf="item.domain" class="domain">({{item.domain}})</span> -->
+    </p>
+    <div class="subtext-laptop">
+      <span>
+        {{item.score}} points by
+        <a href="">{{item.by}}</a>
+      </span>
+      <span>
+        {{ item.time }}
+        <span> |
+          <a [routerLink]="['/item', item.id]">
+            <span *ngIf="item.descendants !== 0">
+              {{item.descendants}}
+              <span *ngIf="item.descendants === 1">comment</span>
+              <span *ngIf="item.descendants > 1">comments</span>
+            </span>
+            <span *ngIf="item.descendants === 0">discuss</span>
+          </a>
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="item-mobile">
+    <p>
+      <a class="title" href="{{item.url}}">
+        {{item.title}}
+      </a>
+      <span *ngIf="item.domain" class="domain">({{item.domain}})</span>
+    </p>
+    <div class="subtext-palm">
+      <div class="details">
+        <span class="name"> <a href="">{{item.user}}</a></span>
+        <span class="right">{{item.points}} ★</span>
+      </div>
+      <div class="details">
+      {{ item.time_ago }}
+      <a [routerLink]="['/item', item.id]" class="comment-number"> •
+        <span *ngIf="item.descendants !== 0">
+          {{item.descendants}}
+          <span *ngIf="item.descendants === 1">comment</span>
+          <span *ngIf="item.descendants > 1">comments</span>
+        </span>
+        <span *ngIf="item.descendants === 0">discuss</span>
+      </a>
+      </div>
+    </div>
+  </div>
