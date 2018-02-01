@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ItemComponent implements OnInit {
 
   // stories(parent) -- @Input --> item(child)
+  // prosledjivanje
   @Input() itemID: number;
 
   constructor() { }
