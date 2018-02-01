@@ -14,9 +14,10 @@ export class HncloneApiService {
     this.baseUrl = 'https://hacker-news.firebaseio.com/v0';
   }
 
-  fetchStories(): Observable<any> {
+  // aca
+  fetchStories(): Observable<number[]> {
     return this.http.get(`${this.baseUrl}/topstories.json`)
-                    .map(response => this.data = response);
+                    .map(response => this.data = response as number[]);
   }
 
   fetchItem(id: number): Observable<HnInterface> {

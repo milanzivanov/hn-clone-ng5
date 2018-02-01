@@ -18,7 +18,8 @@
       <div class="subtext-laptop">
         {{item.score}} points by
         <a href="">{{item.by}}</a>
-        {{ item.time }}
+        <!-- aca -->
+        {{ timeFormated() }}
         <a href="">
           <span *ngIf="item.descendants !== 0">
             {{item.descendants}}

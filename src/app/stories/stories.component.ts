@@ -10,8 +10,8 @@ import { HncloneApiService } from '../hnclone-api.service';
 
 export class StoriesComponent implements OnInit {
 
-  // question
-  items;
+  // aca
+  items: number[];
 
   constructor(private _hackerCloneApiService: HncloneApiService) {
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HncloneApiService } from '../hnclone-api.service';
+import { HncloneApiService, HnInterface } from '../hnclone-api.service';
 
 @Component({
   selector: 'app-item',
@@ -10,10 +10,11 @@ export class ItemComponent implements OnInit {
 
   // stories(parent) -- @Input --> item(child)
   @Input() itemID: number;
-  item;
+  // ACA
+  item: HnInterface;
 
   // time
-  today = Date.now();
+  // today = Date.now();
   // fixedTimezone = '2015-06-15T09:03:01+0900';
 
 
@@ -25,7 +26,10 @@ export class ItemComponent implements OnInit {
       console.log(data);
     }, error => console.log('Could not load item' + this.itemID));
 
+  }
 
+  timeFormated() {
+    return (new Date(this.item.time)).toDateString();
   }
 
 }
