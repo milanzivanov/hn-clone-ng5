@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HncloneApiService } from '../hnclone-api.service';
+import { HncloneApiService, HnInterface } from '../hnclone-api.service';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,7 +14,7 @@ export class StoriesComponent implements OnInit {
 
   // question
   // items: number[] = [];
-  items;
+  items: HnInterface[];
 
   // router
   typeSub: any;
@@ -24,7 +24,9 @@ export class StoriesComponent implements OnInit {
   listStart: number;
 
   // user
-  user;
+  // tslint:disable-next-line:no-inferrable-types
+  // user: string = 'il';
+  user: string;
   // userId: string;
 
   constructor(private _hackerCloneApiService: HncloneApiService,
@@ -36,14 +38,18 @@ export class StoriesComponent implements OnInit {
     //                     .subscribe(items => this.items = items,
     //                                error => console.log('Error!!!'));
 
+
+
+
     // routing question !!!
     this.typeSub = this.route.data
-                           .subscribe(data => this.storiesType = (data as any).storiesType);
+                       .subscribe(data => this.storiesType = (data as any).storiesType);
 
-  this.pageSub = this.route.params.subscribe(params => {
+    this.pageSub = this.route.params.subscribe(params => {
     this.pageNum = +params['page'] ? +params['page'] : 1;
 
-    this._hackerCloneApiService.fetchStories(this.storiesType, this.pageNum)
+    // tttt
+    this._hackerCloneApiService.fetchTopStories()
                              .subscribe(
                                items => this.items = items,
                                error => console.log('Error fetching' + this.storiesType + 'stories'),

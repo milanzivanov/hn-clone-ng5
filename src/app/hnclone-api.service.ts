@@ -1,41 +1,59 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class HncloneApiService {
+  user: any;
 
-  data: Object;
+  data: HnInterface[];
   baseUrl: string;
 
   constructor(private http: HttpClient) {
-    // good practice
+    //
     this.baseUrl = 'https://hacker-news.firebaseio.com/v0';
     // this.baseUrl = 'https://node-hnapi.herokuapp.com';
   }
 
-  fetchStories(storyType: string, page: number): Observable<any> {
+
+  fetchTopStories(): Observable<HnInterface[]> {
     // return this.http.get(`${this.baseUrl}/${storyType}?page=${page}`)
-    return this.http.get(`${this.baseUrl}/topstories.json`)
-    // return this.http.get(`${this.baseUrl}/${storyType}?page=${page}`)
-                    .map(response => this.data = response);
+    const ids = this.http
+      .get(`${this.baseUrl}/topstories.json`)
+      .map(response => {
+        const temp = response as number[];
+        const data = temp.map(r => this.fetchItem(r));
+        const unwind = Observable.forkJoin(data);
+        return unwind;
+      })
+      .flatMap(p => p);
+
+      return ids;
   }
 
-  // start user
+  // async fetchTopStories2(): Promise<HnInterface[]> {
+  //   const ids = await this.http.get<number[]>(`${this.baseUrl}/topstories.json`);
+  //   const promises = ids.map(r => this.fetchItem(r));
+  //   return Promise.all(promises);
+  // }
 
+
+  // start user
   fetchUser(userId: string): Observable<any> {
-    // return this.http.get(`${this.baseUrl}/${storyType}?page=${page}`)
+    // interfce to make
     return this.http.get(`${this.baseUrl}/user/${userId}.json`)
-    // return this.http.get(`${this.baseUrl}/${storyType}?page=${page}`)
-                    .map((response) => {
+    .map((response) => {
+      console.log(this.user);
                       return response as any;
+
                     });
   }
 
 // finish
-
-
 
   fetchItem(itemId: number): Observable<HnInterface> {
     return this.http.get(`${this.baseUrl}/item/${itemId}.json`)
