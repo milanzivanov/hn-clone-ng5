@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HncloneApiService } from '../hnclone-api.service';
+import { HncloneApiService, HnInterface } from '../hnclone-api.service';
 
 @Component({
   selector: 'app-stories',
@@ -11,15 +11,17 @@ import { HncloneApiService } from '../hnclone-api.service';
 export class StoriesComponent implements OnInit {
 
   // aca
-  items: number[];
+  items: HnInterface[];
 
   constructor(private _hackerCloneApiService: HncloneApiService) {
   }
 
-  ngOnInit() {
-    this._hackerCloneApiService.fetchStories()
-                        .subscribe(items => this.items = items,
-                                   error => console.log('Error!!!'));
+  async ngOnInit() {
+    const temp = await this._hackerCloneApiService.fetchStories();
+
+    this.items = temp.slice(0, 5);
+    // db123
+    // console.log(this.items);
   }
 
 }

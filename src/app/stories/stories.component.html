@@ -1,14 +1,10 @@
 <div class="main-content">
   <ol>
-    <li *ngFor="let item of items | slice:0:30" class="post">
+    <li *ngFor="let item of items" class="post">
         <!-- item component -->
         <app-item class="item-block"
-                  itemID="{{ item }}">
+                  [item]="item">
         </app-item>
     </li>
   </ol>
-  <div class="nav">
-    <a href="" class="prev"> ‹ Prev </a>
-    <a href="" class="more"> More › </a>
-  </div>
 </div>

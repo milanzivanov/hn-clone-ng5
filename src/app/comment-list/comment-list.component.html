@@ -1,0 +1,12 @@
+
+<span class="collapse" (click)="onCollapse()">
+  [{{collapse ? '+' : '-'}}]
+</span>
+
+<!-- {{ item.descendants }} -->
+<ul *ngIf="!collapse">
+  <li *ngFor="let x of comments">
+      <div [innerHTML]="x.text"></div>
+    </li>
+</ul>
+

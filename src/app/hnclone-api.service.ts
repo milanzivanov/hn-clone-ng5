@@ -3,45 +3,50 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+
 @Injectable()
 export class HncloneApiService {
 
-  data: Object;
+  data: number[];
   baseUrl: string;
 
   constructor(private http: HttpClient) {
-    // good practice
     this.baseUrl = 'https://hacker-news.firebaseio.com/v0';
   }
 
-  // aca
-  fetchStories(): Observable<number[]> {
-    return this.http.get(`${this.baseUrl}/topstories.json`)
-                    .map(response => this.data = response as number[]);
+  async fetchStories(): Promise<HnInterface[]> {
+    const ids = await this.http.get(`${this.baseUrl}/topstories.json`)
+                    .map(response => this.data = response as number[]).toPromise();
+
+                    const temp = ids.map( p => {
+                      return this.fetchItem(p);
+                    });
+
+                    const res = Promise.all(temp);
+                    return res;
   }
 
-  fetchItem(id: number): Observable<HnInterface> {
+
+  fetchItem(id: number): Promise<HnInterface> {
     return this.http.get(`${this.baseUrl}/item/${id}.json`)
-                    .map((response) => {
-                      const res = response as HnInterface;
-                      return {
-                        title: res.title,
-                        descendants: res.descendants,
-                        time: res.time,
-                        url: res.url,
-                        by: res.by,
-                        score: res.score,
-                        id: res.id,
-                        kids: res.kids,
-                        type: res.type
-                      };
-                    }
-                    // .map(response => console.log(response)
-                    );
+    .map((response) => response as HnInterface).toPromise();
+  }
+
+  fetchComment(id: number): Promise<HnComments> {
+    return this.http.get(`${this.baseUrl}/item/${id}.json`)
+    .map((response) => {
+      // moze i u jednoj liniji kao iznad
+      return response as HnComments;
+    }).toPromise();
+  }
+
+  fetchComments(ids: number[]): Promise<HnComments[]> {
+    const temp = ids.map( p => this.fetchComment(p));
+    const res = Promise.all(temp);
+    return res;
   }
 }
 
-// interface
 export interface HnInterface {
   by: string;
   descendants: number;
@@ -54,3 +59,12 @@ export interface HnInterface {
   url: string;
 }
 
+export interface HnComments {
+  by: string;
+  id: number;
+  kids: number[];
+  parent: number;
+  text: string;
+  time: number;
+  type: string;
+}

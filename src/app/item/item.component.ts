@@ -9,27 +9,19 @@ import { HncloneApiService, HnInterface } from '../hnclone-api.service';
 export class ItemComponent implements OnInit {
 
   // stories(parent) -- @Input --> item(child)
-  @Input() itemID: number;
-  // ACA
-  item: HnInterface;
-
-  // time
-  // today = Date.now();
-  // fixedTimezone = '2015-06-15T09:03:01+0900';
-
+  @Input() item: HnInterface;
 
   constructor(private _hackerCloneApiService: HncloneApiService) { }
 
   ngOnInit() {
-    this._hackerCloneApiService.fetchItem(this.itemID).subscribe(data => {
-      this.item = data;
-      console.log(data);
-    }, error => console.log('Could not load item' + this.itemID));
+  //   this._hackerCloneApiService.fetchItem(this.itemID).subscribe(data => {
+  //     this.item = data;
+  //     console.log(data);
+  //   }, error => console.log('Could not load item' + this.itemID));
 
-  }
-
-  timeFormated() {
-    return (new Date(this.item.time)).toDateString();
+  // db 123
+  // console.log('item.component');
+  // console.log(this.item);
   }
 
 }

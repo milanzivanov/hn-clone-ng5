@@ -1,6 +1,3 @@
-<!-- This is: {{item.title}} -->
-<p>Today is {{today | date:'fullDate'}}</p>
-
 
 <div class="loading-section" *ngIf="!item">
   <div class="loader">
@@ -10,25 +7,25 @@
 <div *ngIf="item">
   <div class="item-laptop">
       <p>
-        <a class="title" href="">
+        <a class="title" href="{{item?.url}}">
           {{item.title}}
         </a>
-        <span class="domain">{{item.url}}</span>
       </p>
       <div class="subtext-laptop">
         {{item.score}} points by
         <a href="">{{item.by}}</a>
-        <!-- aca -->
-        {{ timeFormated() }}
-        <a href="">
+        <span>
           <span *ngIf="item.descendants !== 0">
             {{item.descendants}}
             <span *ngIf="item.descendants === 1">comment</span>
             <span *ngIf="item.descendants > 1">comments</span>
           </span>
           <span *ngIf="item.descendants === 0">discuss</span>
-        </a>
+          <!-- <span class="collapse" (click)="collapse = !collapse">[{{collapse ? '-' : '+'}}]</span> -->
+        </span>
       </div>
+      <!-- comments -->
+      <app-comment-list [items]="item.kids" isRoot="true"></app-comment-list>
   </div>
   <div class="item-mobile">
     <p>
