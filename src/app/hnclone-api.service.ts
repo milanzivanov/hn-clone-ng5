@@ -45,6 +45,7 @@ export class HncloneApiService {
     const res = Promise.all(temp);
     return res;
   }
+
 }
 
 export interface HnInterface {

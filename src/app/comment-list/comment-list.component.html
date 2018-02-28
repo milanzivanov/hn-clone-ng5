@@ -6,6 +6,7 @@
 <!-- {{ item.descendants }} -->
 <ul *ngIf="!collapse">
   <li *ngFor="let x of comments">
+    <h3>{{ x.by }}</h3>
       <div [innerHTML]="x.text"></div>
     </li>
 </ul>
