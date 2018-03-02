@@ -11,7 +11,7 @@ import { HncloneApiService, HnInterface } from '../hnclone-api.service';
 export class StoriesComponent implements OnInit {
 
   // aca
-  items: HnInterface[];
+  stories: HnInterface[];
 
   constructor(private _hackerCloneApiService: HncloneApiService) {
   }
@@ -19,9 +19,10 @@ export class StoriesComponent implements OnInit {
   async ngOnInit() {
     const temp = await this._hackerCloneApiService.fetchStories();
 
-    this.items = temp.slice(0, 5);
+    this.stories = temp.slice(0, 5);
     // db123
-    // console.log(this.items);
+    console.log('stories-component');
+    console.log(this.stories);
   }
 
 }

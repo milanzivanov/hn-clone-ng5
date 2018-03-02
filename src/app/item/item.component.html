@@ -1,53 +1,55 @@
 
-<div class="loading-section" *ngIf="!item">
+<div class="loading-section" *ngIf="!story">
   <div class="loader">
     Loading...
   </div>
 </div>
-<div *ngIf="item">
+<div *ngIf="story">
   <div class="item-laptop">
       <p>
-        <a class="title" href="{{item?.url}}">
-          {{item.title}}
+        <a class="title" href="{{story?.url}}">
+          {{story.title}}
         </a>
       </p>
       <div class="subtext-laptop">
-        {{item.score}} points by
-        <a href="">{{item.by}}</a>
-        <span>
-          <span *ngIf="item.descendants !== 0">
-            {{item.descendants}}
-            <span *ngIf="item.descendants === 1">comment</span>
-            <span *ngIf="item.descendants > 1">comments</span>
+        {{story.score}} points by
+        <a href="">{{story.by}}</a>
+        <!-- <span>
+          <span *ngIf="story.descendants !== 0">
+            {{story.descendants}}
+            <span *ngIf="story.descendants === 1">comment</span>
+            <span *ngIf="story.descendants > 1">comments</span>
           </span>
-          <span *ngIf="item.descendants === 0">discuss</span>
-          <!-- <span class="collapse" (click)="collapse = !collapse">[{{collapse ? '-' : '+'}}]</span> -->
-        </span>
+          <span *ngIf="story.descendants === 0">discuss</span>
+        </span> -->
       </div>
       <!-- comments -->
-      <app-comment-list [items]="item.kids" isRoot="true"></app-comment-list>
+      <app-comment-list *ngIf="story.kids !== undefined"
+                        [ids]="story.kids"
+                        isRoot="true">
+      </app-comment-list>
   </div>
   <div class="item-mobile">
     <p>
       <a class="title" href="">
-        {{item.title}}
+        {{story.title}}
       </a>
-      <span class="domain">{{item.url}}</span>
+      <span class="domain">{{story.url}}</span>
     </p>
     <div class="subtext-palm">
       <div class="details">
-        <span class="name"> <a href="">{{item.by}}</a></span>
-        <span class="right">{{item.score}} ★</span>
+        <span class="name"> <a href="">{{story.by}}</a></span>
+        <span class="right">{{story.score}} ★</span>
       </div>
       <div class="details">
-      {{ item.time }}
-      <a href="" class="comment-number"> •
-        <span *ngIf="item.descendants !== 0">
-          {{item.descendants}}
-          <span *ngIf="item.descendants === 1">comment</span>
-          <span *ngIf="item.descendants > 1">comments</span>
+      {{ story.time }}
+      <a href="" class="comment-number">
+        <span *ngIf="story.descendants !== 0">
+          {{story.descendants}}
+          <span *ngIf="story.descendants === 1">comment</span>
+          <span *ngIf="story.descendants > 1">comments</span>
         </span>
-        <span *ngIf="item.descendants === 0">discuss</span>
+        <span *ngIf="story.descendants === 0">discuss</span>
       </a>
       </div>
     </div>

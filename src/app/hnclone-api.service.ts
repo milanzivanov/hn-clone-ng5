@@ -14,6 +14,7 @@ export class HncloneApiService {
     this.baseUrl = 'https://hacker-news.firebaseio.com/v0';
   }
 
+  // pitanje???
   async fetchStories(): Promise<HnInterface[]> {
     const ids = await this.http.get(`${this.baseUrl}/topstories.json`)
                     .map(response => this.data = response as number[]).toPromise();
@@ -26,7 +27,7 @@ export class HncloneApiService {
                     return res;
   }
 
-
+  // pitanje???
   fetchItem(id: number): Promise<HnInterface> {
     return this.http.get(`${this.baseUrl}/item/${id}.json`)
     .map((response) => response as HnInterface).toPromise();

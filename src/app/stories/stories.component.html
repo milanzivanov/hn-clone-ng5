@@ -1,9 +1,9 @@
 <div class="main-content">
   <ol>
-    <li *ngFor="let item of items" class="post">
+    <li *ngFor="let story of stories" class="post">
         <!-- item component -->
         <app-item class="item-block"
-                  [item]="item">
+                  [story]="story">
         </app-item>
     </li>
   </ol>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HncloneApiService, HnInterface } from '../hnclone-api.service';
+import { HncloneApiService, HnInterface, HnComments } from '../hnclone-api.service';
 
 @Component({
   selector: 'app-item',
@@ -9,19 +9,11 @@ import { HncloneApiService, HnInterface } from '../hnclone-api.service';
 export class ItemComponent implements OnInit {
 
   // stories(parent) -- @Input --> item(child)
-  @Input() item: HnInterface;
-
+  @Input() story: HnInterface;
+  comments: HnComments[];
   constructor(private _hackerCloneApiService: HncloneApiService) { }
 
   ngOnInit() {
-  //   this._hackerCloneApiService.fetchItem(this.itemID).subscribe(data => {
-  //     this.item = data;
-  //     console.log(data);
-  //   }, error => console.log('Could not load item' + this.itemID));
-
-  // db 123
-  // console.log('item.component');
-  // console.log(this.item);
   }
 
 }

@@ -1,13 +1,24 @@
+<span *ngIf="ids !== undefined">
+  {{ids.length}}
+  <span *ngIf="ids.length === 1">comment</span>
+  <span *ngIf="ids.length > 1">comments</span>
+</span>
 
 <span class="collapse" (click)="onCollapse()">
   [{{collapse ? '+' : '-'}}]
 </span>
 
-<!-- {{ item.descendants }} -->
-<ul *ngIf="!collapse">
-  <li *ngFor="let x of comments">
-    <h3>{{ x.by }}</h3>
-      <div [innerHTML]="x.text"></div>
+<div style="margin-left: 10px;">
+
+  <!-- {{ item.descendants }} -->
+  <ul *ngIf="!collapse">
+    <li *ngFor="let comment of comments">
+      <h3>{{ comment.by }}</h3>
+      <div [innerHTML]="comment.text"></div>
+      <!-- comments list child rekuz -->
+      <app-comment-list *ngIf="comment.kids !== undefined" [ids]="comment.kids" isRoot="false"></app-comment-list>
     </li>
-</ul>
+  </ul>
+
+</div>
 
