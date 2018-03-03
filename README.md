@@ -4,5 +4,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Link preview
 
-[hacker news clone](https://deserted-boys.surge.sh/)
+[hacker news clone](https://black-and-white-hospital.surge.sh/)
 
