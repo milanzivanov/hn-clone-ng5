@@ -1,10 +1,20 @@
 <div class="main-content">
-  <ol>
-    <li *ngFor="let story of stories" class="post">
-        <!-- item component -->
-        <app-item class="item-block"
-                  [story]="story">
-        </app-item>
-    </li>
-  </ol>
+
+  <div class="loading-section" *ngIf="!stories">
+    <div class="loader">
+      Loading...
+    </div>
+  </div>
+
+  <div class="stories-container">
+    <ol>
+      <li *ngFor="let story of stories" class="post">
+          <!-- item component -->
+          <app-item class="item-block"
+                    [story]="story">
+          </app-item>
+      </li>
+    </ol>
+  </div>
+
 </div>

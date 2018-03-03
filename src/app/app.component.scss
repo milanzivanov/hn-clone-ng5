@@ -10,13 +10,16 @@ body {
   }
 }
 
-#wrapper {
-  background-color: #F6F6EF;
+.header-container {
+    width: 100%;
+    background-color: #b92b27;
+    transition: 0.5s ease-in-out;
+}
+
+.wrapper {
   position: relative;
-  width: 85%;
-  min-height: 80px;
+  max-width: 85%;
   margin: 0 auto;
-  font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   height: 100%;
 
@@ -25,3 +28,4 @@ body {
     background-color: #fff;
   }
 }
+

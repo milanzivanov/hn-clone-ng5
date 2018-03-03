@@ -1,9 +1,3 @@
-
-<div class="loading-section" *ngIf="!story">
-  <div class="loader">
-    Loading...
-  </div>
-</div>
 <div *ngIf="story">
   <div class="item-laptop">
       <p>
@@ -28,30 +22,5 @@
                         [ids]="story.kids"
                         isRoot="true">
       </app-comment-list>
-  </div>
-  <div class="item-mobile">
-    <p>
-      <a class="title" href="">
-        {{story.title}}
-      </a>
-      <span class="domain">{{story.url}}</span>
-    </p>
-    <div class="subtext-palm">
-      <div class="details">
-        <span class="name"> <a href="">{{story.by}}</a></span>
-        <span class="right">{{story.score}} ★</span>
-      </div>
-      <div class="details">
-      {{ story.time }}
-      <a href="" class="comment-number">
-        <span *ngIf="story.descendants !== 0">
-          {{story.descendants}}
-          <span *ngIf="story.descendants === 1">comment</span>
-          <span *ngIf="story.descendants > 1">comments</span>
-        </span>
-        <span *ngIf="story.descendants === 0">discuss</span>
-      </a>
-      </div>
-    </div>
   </div>
 </div>
